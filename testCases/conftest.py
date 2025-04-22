@@ -7,3 +7,4 @@ def setup():
     driver.maximize_window()
     driver.delete_all_cookies()
     return driver
+

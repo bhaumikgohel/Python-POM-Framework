@@ -30,5 +30,6 @@ class Login:
         setting.click()
         logout = wait.until(EC.element_to_be_clickable((By.XPATH, self.icon_logout_xpath)))
         logout.click()
+        self.driver.close()
 
 

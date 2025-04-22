@@ -5,12 +5,15 @@ import  pytest
 from allure_commons.types import AttachmentType
 from selenium import  webdriver
 from pageObject.LoginPage import Login
+from utilities.readProperties import ReadConfig
 
+# import the untilities package name . module name and import class name
+# By using class we can directly call the static method no need to create class object
 
 class Test_001_Login:
-    baseURL = "https://ui.cogmento.com/?lang=en"
-    username = "bhaumik36@yopmail.com"
-    password = "Admin@123"
+    baseURL = ReadConfig.getApplicationURL()
+    username = ReadConfig.getUseremail()
+    password = ReadConfig.getUserPassword()
 
     @allure.severity(allure.severity_level.MINOR)
     def test_homePageTitle(self,setup):
@@ -24,7 +27,7 @@ class Test_001_Login:
             self.driver.close()
         else:
             # allure.attach(self.driver.get_screenshot_as_png(),name="Title Not Matched",attachment_type=AttachmentType.PNG)
-            self.driver.save_screenshot(".\\Screenshots\\"+"test_homePageTitle.png")
+            self.driver.save_screenshot("./Screenshots/"+"test_homePageTitle.png")
             self.driver.close()
             assert False
 
