@@ -19,8 +19,7 @@ class Test_001_Login:
     # Create one more variable and call the logger method by using class name LogGen
     logg = LogGen.GenLog()
 
-    # @allure.severity(allure.severity_level.MINOR)
-
+    @allure.severity(allure.severity_level.MINOR)
     def test_homePageTitle(self,setup):
         self.logg.info("************** Test_001_Login ********************")
 
@@ -30,12 +29,12 @@ class Test_001_Login:
         self.driver.get(self.baseURL)
 
         act_title = self.driver.title
-        if act_title == "Cogmento CRM":
+        if act_title == "Cogmento CR":
             assert True
             self.logg.info("**************** Home Page Title Test is Passed *************")
             self.driver.close()
         else:
-            # allure.attach(self.driver.get_screenshot_as_png(),name="Title Not Matched",attachment_type=AttachmentType.PNG)
+            allure.attach(self.driver.get_screenshot_as_png(),name="Title Not Matched",attachment_type=AttachmentType.PNG)
             self.driver.save_screenshot("./Screenshots/"+"test_homePageTitle.png")
             self.logg.error("**************** Home Page Title Test is Failed *************")
             self.driver.close()
