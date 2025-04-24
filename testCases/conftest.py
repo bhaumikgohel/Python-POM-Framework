@@ -28,3 +28,18 @@ def browser(request):
 
 
 
+# ############### pytest HTML Reports ##################
+
+def pytest_configure(config):
+    config.option.metadata = True
+
+def pytest_metadata(metadata):
+    metadata['Project Name'] = 'FREE CRM'
+    metadata['Module Name'] = 'Login Logout'
+    metadata['Tester'] = 'Bhaumik Gohel'
+    return metadata
+
+@pytest.mark.optionalhook
+def pytest_metadata(metadata):
+    metadata.pop("Java_Home",None)
+    metadata.pop("Plugins",None)
