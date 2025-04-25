@@ -1,3 +1,4 @@
+import time
 from pageObject.LoginPage import Login
 from utilities.readProperties import ReadConfig
 from utilities.customLogger import LogGen
@@ -25,6 +26,8 @@ class Test_003_Addcontact:
         self.logg.info("********** Login Successfully **********")
 
         self.addcontact = AddCompany(self.driver)
+
+        time.sleep(10)
 
         mylist = self.addcontact.Check_required_message()
 

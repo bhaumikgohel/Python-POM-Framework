@@ -1,4 +1,5 @@
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.expected_conditions import presence_of_element_located
 from selenium.webdriver.support.expected_conditions import visibility_of_element_located, visibility_of
 from selenium.webdriver.support.wait import WebDriverWait
 
@@ -21,13 +22,11 @@ class AddCompany:
 
     def Check_required_message(self):
 
-        wait = WebDriverWait(self.driver, 10)
-        wait.until(visibility_of(self.driver.find_element(By.XPATH,self.icon_user_xpath)))
-
-        self.driver.find_element(By.XPATH, self.icon_user_xpath).click()
+        user= self.driver.find_element(By.XPATH, self.icon_user_xpath)
+        user.click()
 
         wait = WebDriverWait(self.driver,10)
-        wait.until(visibility_of(self.driver.find_element(By.XPATH,self.btn_save_text)))
+        wait.until(presence_of_element_located(self.driver.find_element(By.XPATH,self.btn_save_text)))
 
         self.driver.find_elelment(By.XPATH,self.btn_save_text).click()
 
