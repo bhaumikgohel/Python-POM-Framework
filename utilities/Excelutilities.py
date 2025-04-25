@@ -13,10 +13,10 @@ def getColCount(file,SheetName):
 def readData(file,SheetName,rownum,colnum):
     workbook = openpyxl.load_workbook(file)
     sheet = workbook[SheetName]
-    return sheet.cell(row=rownum,col=colnum).value
+    return sheet.cell(row=rownum,column=colnum).value
 
 def writeData(file,SheetName, rownum,colnum,data):
     workbook = openpyxl.load_workbook(file)
     sheet = workbook[SheetName]
-    sheet.cell(row=rownum,col=colnum).value=data
+    sheet.cell(rows=rownum,cols=colnum).value=data
     workbook.save(file)
