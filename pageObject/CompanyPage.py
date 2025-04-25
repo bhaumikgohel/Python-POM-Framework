@@ -1,11 +1,11 @@
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.expected_conditions import visibility_of_element_located, visibility_of
 from selenium.webdriver.support.wait import WebDriverWait
-from LoginPage import Login
+
 
 
 class AddCompany:
-    icon_user_xpath = "//i[@class='users icon']"
+    icon_user_xpath = "//a//i[@class='users icon']"
     btn_create_xpath = "(//button[@class='ui linkedin button'])[3]"
     input_firstname_xpath = "//input[@name='first_name']"
     input_lastname_xpath = "//input[@name='last_name']"
@@ -20,31 +20,36 @@ class AddCompany:
        self.driver = driver
 
     def Check_required_message(self):
-        self.driver.find_elelment(By.XPATH,'btn_save_text')
-        firstnamerequired = self.driver.find_elelment(By.XPATH,self.label_firstname_required_xpath).text
-        lastnamerequired = self.driver.find_elelment(By.XPATH, self.label_lastname_required_xpath).text
 
-        if firstnamerequired == "The field First Name is required." | lastnamerequired == "The field Last Name is required.":
-            assert True
-            self.driver.close()
-        else:
-            self.driver.close()
-            assert False
+        wait = WebDriverWait(self.driver, 10)
+        wait.until(visibility_of(self.driver.find_element(By.XPATH,self.icon_user_xpath)))
+
+        self.driver.find_element(By.XPATH, self.icon_user_xpath).click()
+
+        wait = WebDriverWait(self.driver,10)
+        wait.until(visibility_of(self.driver.find_element(By.XPATH,self.btn_save_text)))
+
+        self.driver.find_elelment(By.XPATH,self.btn_save_text).click()
+
+        firstnamerequired = self.driver.find_element(By.XPATH,self.label_firstname_required_xpath).text
+        lastnamerequired = self.driver.find_element(By.XPATH, self.label_lastname_required_xpath).text
+
+        return [firstnamerequired,lastnamerequired]
 
     def Click_On_Side_Menu_Contact(self):
         self.driver.find_elelment(By.XPATH,self.icon_user_xpath)
 
     def Set_Username(self,fname):
-        self.driver.find_elelment(By.XPATH,self.input_firstname_xpath).clear()
-        self.driver.find_elelment(By.XPATH,self.input_firstname_xpath).send_keys(fname)
+        self.driver.find_element(By.XPATH,self.input_firstname_xpath).clear()
+        self.driver.find_element(By.XPATH,self.input_firstname_xpath).send_keys(fname)
 
     def Set_Lastname(self,lname):
-        self.driver.find_elelment(By.XPATH,self.input_lastname_xpath).clear()
-        self.driver.find_elelment(By.XPATH,self.input_lastname_xpath).send_keys(lname)
+        self.driver.find_element(By.XPATH,self.input_lastname_xpath).clear()
+        self.driver.find_element(By.XPATH,self.input_lastname_xpath).send_keys(lname)
 
     def Set_Emailid(self,email):
-        self.driver.find_elelment(By.XPATH,self.input_email_xpath).clear()
-        self.driver.find_elelment(By.XPATH,self.input_email_xpath).send_keys(email)
+        self.driver.find_element(By.XPATH,self.input_email_xpath).clear()
+        self.driver.find_element(By.XPATH,self.input_email_xpath).send_keys(email)
 
     def Click_On_Save_Button(self):
-        self.driver.find_elelment(By.XPATH,self.btn_save_text).click()
+        self.driver.find_element(By.XPATH,self.btn_save_text).click()

@@ -1,5 +1,8 @@
 from selenium import  webdriver
 import  pytest
+from selenium.webdriver.support.expected_conditions import visibility_of_element_located, visibility_of
+from selenium.webdriver.support.wait import WebDriverWait
+
 
 @pytest.fixture()
 def setup(browser):
@@ -25,8 +28,6 @@ def pytest_addoption(parser):
 @pytest.fixture()
 def browser(request):
     return request.config.getoption("--browser")
-
-
 
 # ############### pytest HTML Reports ##################
 
