@@ -1,4 +1,6 @@
 import time
+from tokenize import String
+
 from pageObject.LoginPage import Login
 from utilities.readProperties import ReadConfig
 from utilities.customLogger import LogGen
@@ -29,9 +31,11 @@ class Test_003_Addcontact:
 
         time.sleep(10)
 
-        mylist = self.addcontact.Check_required_message()
+        message  = self.addcontact.Check_required_message()
 
-        assert mylist == ["The field First Name is required.","The field Last Name is required."]
+        expected_messages = ["The field First Name is required.", "The field Last Name is required."]
+
+        assert message == expected_messages
 
         self.driver.close()
 
