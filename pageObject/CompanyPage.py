@@ -21,17 +21,19 @@ class AddCompany:
     def __init__(self,driver):
        self.driver = driver
 
-    def Check_required_message(self):
-
-        user= self.driver.find_element(By.XPATH, self.icon_user_xpath)
+    def Click_on_User_icon_from_Sidemenu(self):
+        user = self.driver.find_element(By.XPATH, self.icon_user_xpath)
         user.click()
 
+    def Click_on_Create_Button(self):
         self.driver.find_element(By.XPATH, self.btn_Creat_Xpath).click()
 
+    def Click_on_Save_button(self):
         wait = WebDriverWait(self.driver, 10)
         wait.until(presence_of_element_located(self.driver.find_element(By.XPATH, self.btn_save_text)))
+        self.driver.find_element(By.XPATH, self.btn_save_text).click()
 
-        self.driver.find_element(By.XPATH,self.btn_save_text).click()
+    def Check_required_message(self):
 
         firstnamerequired = self.driver.find_element(By.XPATH,self.label_firstname_required_xpath)
         firstnamerequired = firstnamerequired.text
@@ -40,9 +42,6 @@ class AddCompany:
         lastnamerequired = lastnamerequired.text
 
         return [firstnamerequired,lastnamerequired]
-
-    def Click_On_Side_Menu_Contact(self):
-        self.driver.find_element(By.XPATH,self.icon_user_xpath)
 
     def Set_Username(self,fname):
         self.driver.find_element(By.XPATH,self.input_firstname_xpath).clear()
