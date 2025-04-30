@@ -1,6 +1,6 @@
 import time
 from tokenize import String
-
+import pytest
 from pageObject.LoginPage import Login
 from utilities.readProperties import ReadConfig
 from utilities.customLogger import LogGen
@@ -13,7 +13,7 @@ class Test_003_Addcontact:
     password = ReadConfig.getUserPassword()
 
     logg = LogGen.GenLog()
-
+    @pytest.mark.sanity
     def test_verify_required_msg(self,setup):
         self.logg.info("*********** Test_003_AddContact ************")
 

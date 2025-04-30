@@ -20,6 +20,7 @@ class Test_001_Login:
     logg = LogGen.GenLog()
 
     @allure.severity(allure.severity_level.MINOR)
+    @pytest.mark.regression
     def test_homePageTitle(self,setup):
         self.logg.info("************** Test_001_Login ********************")
 
@@ -41,6 +42,7 @@ class Test_001_Login:
             assert False
 
     @allure.severity(allure.severity_level.NORMAL)
+    @pytest.mark.sanity
     def test_login(self,setup):
         self.logg.info("**************** Login Test is Started *************")
         self.driver = setup
