@@ -1,9 +1,8 @@
-from operator import truediv
-
 import allure
-import  pytest
-from allure_commons.types import AttachmentType
 from selenium import  webdriver
+from selenium.webdriver import Chrome
+import pytest
+from allure_commons.types import AttachmentType
 from pageObject.LoginPage import Login
 from utilities.readProperties import ReadConfig
 from utilities.customLogger import LogGen
@@ -18,7 +17,6 @@ class Test_001_Login:
 
     # Create one more variable and call the logger method by using class name LogGen
     logg = LogGen.GenLog()
-
     @allure.severity(allure.severity_level.MINOR)
     @pytest.mark.regression
     def test_homePageTitle(self,setup):
@@ -30,7 +28,7 @@ class Test_001_Login:
         self.driver.get(self.baseURL)
 
         act_title = self.driver.title
-        if act_title == "Cogmento CR":
+        if act_title == "Cogmento CRM":
             assert True
             self.logg.info("**************** Home Page Title Test is Passed *************")
             self.driver.close()
@@ -42,7 +40,7 @@ class Test_001_Login:
             assert False
 
     @allure.severity(allure.severity_level.NORMAL)
-    @pytest.mark.sanity
+    @pytest.mark.regression
     def test_login(self,setup):
         self.logg.info("**************** Login Test is Started *************")
         self.driver = setup
